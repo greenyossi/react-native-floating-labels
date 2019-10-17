@@ -42,10 +42,12 @@ var FloatingLabel = createReactClass({
     return state
   },
 
-  componentWillReceiveProps(props) {
-    if (typeof props.value !== 'undefined' && props.value !== this.state.text) {
-      this.setState({ text: props.value, dirty: !!props.value })
-      this._animate(!!props.value)
+  componentDidUpdate(prevProps) {
+    const { value } = this.props;
+    
+    if (typeof value !== 'undefined' && value !== this.state.text) {
+      this.setState({ text: value, dirty: !!value })
+      this._animate(!!value)
     }
   },
 
